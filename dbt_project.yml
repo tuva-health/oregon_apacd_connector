@@ -8,9 +8,20 @@ config-version: 2
 profile: 'default'
 
 vars:
-    source_database:          # configuration required (name of the database where your data is stored)
-    source_schema:       # configuration required (name of the schema where you created staging tables)
-    source_name:         # configuration required (name of your source dataset e.g. cms_claims)
+  source_name: oregon_apacd             # configuration required
+                                        # name describing the dataset feeding this project
+
+  input_database: tuva                  # configuration required
+                                        # name of the database where sources feeding this project are stored
+
+  input_schema: oregon_apacd            # configuration required
+                                        # name of the schema where sources feeding this project is stored
+
+  output_database: tuva                 # configuration required
+                                        # name of the database where output of this project should be written
+
+  output_schema: claims_input           # configuration required
+                                        # name of the schema where output of this project should be written
 
     medical_claim: "{{ source(var('source_name'),'medical_claim') }}"
     member_month: "{{ source(var('source_name'),'member_month') }}"
